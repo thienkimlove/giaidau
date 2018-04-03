@@ -191,19 +191,16 @@ CONSTANCE_ADDITIONAL_FIELDS = {
         'choices': ((None, "-----"), ("yes", "Yes"), ("no", "No"))
     }],
     'ck_editor': ['django.forms.fields.CharField', {
-        'widget': 'core.widgets.EditorTextArea',
+        'widget': 'ckeditor_uploader.widgets.CKEditorUploadingWidget',
     }],
 
     'image_field': ['django.forms.ImageField', {}]
 }
 
 CONSTANCE_CONFIG = {
-    'FOOTER_TEXT': ('', _('Footer Text'), str),
-    'HEADER_HOTLINE': ('', _('Header Hotline'), str),
-    'HEADER_EMAIL': ('', _('Header Email'), str),
-
     'FB_ID': ('188252524956805', _('Facebook ID'), str),
     'SITE_NAME': ('Sitename', _('Site name'), str),
+    #'GOOGLE': ('', _('Google Analytic'), 'ck_editor'),
     'GOOGLE': ('', _('Google Analytic'), str),
 }
 
@@ -211,7 +208,7 @@ CONSTANCE_CONFIG_FIELDSETS = {
     'Social': ('FB_ID', 'SITE_NAME', 'GOOGLE'),
 }
 #relative path to MEDIA
-CKEDITOR_UPLOAD_PATH = "media/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
 #All uploaded files are slugified by default. To disable this feature
 CKEDITOR_UPLOAD_SLUGIFY_FILENAME=False
 X_FRAME_OPTIONS = 'SAMEORIGIN'
@@ -242,7 +239,7 @@ CKEDITOR_CONFIGS = {
                        'Language']},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert',
-             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe', 'CodeSnippet']},
             '/',
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
@@ -273,14 +270,15 @@ CKEDITOR_CONFIGS = {
             'autoembed',
             'embedsemantic',
             'autogrow',
-            # 'devtools',
+            #'devtools',
+            'codesnippet',
             'widget',
             'lineutils',
             'clipboard',
             'dialog',
             'dialogui',
             'elementspath',
-            'resize'
+            'resize',
         ]),
     }
 }
